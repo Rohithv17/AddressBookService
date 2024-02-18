@@ -12,7 +12,7 @@ public class Main {
         while (true) {
             System.out.println("Address Book Menu:");
             System.out.println("1. Add Contact");
-            System.out.println("2. Edit Contact");
+            System.out.println("2. Delete Contact");
             System.out.println("3. View Contacts");
             System.out.println("4. Exit ");
             System.out.print("Enter your choice: ");
@@ -41,35 +41,13 @@ public class Main {
                 addressBook.addContact(newContact);
                 System.out.println("Contact added successfully!\n");
             } else if (choice == 2) {
-                System.out.print("Enter first name of the contact to edit: ");
-                String editFirstName = scanner.nextLine();
-                System.out.print("Enter last name of the contact to edit: ");
-                String editLastName = scanner.nextLine();
+                System.out.print("Enter first name of the contact to delete: ");
+                String deleteFirstName = scanner.nextLine();
+                System.out.print("Enter last name of the contact to delete: ");
+                String deleteLastName = scanner.nextLine();
+                addressBook.deleteContact(deleteFirstName, deleteLastName);
 
-                Contacts contactToEdit = addressBook.findContactByName(editFirstName, editLastName);
-                if (contactToEdit != null) {  // Specifies that no edit of contact is done
-                    System.out.print("Enter new first name: ");
-                    String newFirstName = scanner.nextLine();
-                    System.out.print("Enter new last name: ");
-                    String newLastName = scanner.nextLine();
-                    System.out.print("Enter new address: ");
-                    String newAddress = scanner.nextLine();
-                    System.out.print("Enter new city: ");
-                    String newCity = scanner.nextLine();
-                    System.out.print("Enter new state: ");
-                    String newState = scanner.nextLine();
-                    System.out.print("Enter new ZIP: ");
-                    String newZip = scanner.nextLine();
-                    System.out.print("Enter new phone number: ");
-                    String newPhoneNumber = scanner.nextLine();
-                    System.out.print("Enter new email: ");
-                    String newEmail = scanner.nextLine();
 
-                    addressBook.editContact(contactToEdit, newFirstName, newLastName, newAddress, newCity, newState, newZip, newPhoneNumber, newEmail);
-                    System.out.println("Contact edited successfully!\n");
-                } else {
-                    System.out.println("Contact not found.\n");
-                }
             } else if (choice == 3) {
                 addressBook.displayContacts();
             } else if (choice == 4) {
