@@ -33,7 +33,7 @@ public class AddressBook {
         }
         return null; // Contact not found
     }
-
+//  to edit contacts using first and last name
     public void editContact(Contacts contact, String newFirstName, String newLastName, String newAddress,
                             String newCity, String newState, String newZip, String newPhoneNumber, String newEmail) {
         contact.setFirstName(newFirstName);
