@@ -1,6 +1,7 @@
 package com.bridgelabz.addressbookservice;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class AddressBook {
@@ -44,6 +45,18 @@ public class AddressBook {
         contact.setZip(newZip);
         contact.setPhoneNumber(newPhoneNumber);
         contact.setEmail(newEmail);
+    }
+    public void deleteContact(String firstName, String lastName) { // To delete contact using first name and last name
+        Iterator<Contacts> iterator = contacts.iterator();
+        while (iterator.hasNext()) {
+            Contacts contact = iterator.next();
+            if (contact.getFirstName().equals(firstName) && contact.getLastName().equals(lastName)) {
+                iterator.remove();
+                System.out.println("Contact deleted successfully!\n");
+                return;
+            }
+        }
+        System.out.println("Contact not found.\n");
     }
 }
 
