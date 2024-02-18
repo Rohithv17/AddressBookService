@@ -24,5 +24,27 @@ public class AddressBook {
                 }
             }
         }
+
+    public Contacts findContactByName(String firstName, String lastName) {
+        for (Contacts contact : contacts) {
+            if (contact.getFirstName().equals(firstName) && contact.getLastName().equals(lastName)) {
+                return contact;
+            }
+        }
+        return null; // Contact not found
     }
+
+    public void editContact(Contacts contact, String newFirstName, String newLastName, String newAddress,
+                            String newCity, String newState, String newZip, String newPhoneNumber, String newEmail) {
+        contact.setFirstName(newFirstName);
+        contact.setLastName(newLastName);
+        contact.setAddress(newAddress);
+        contact.setCity(newCity);
+        contact.setState(newState);
+        contact.setZip(newZip);
+        contact.setPhoneNumber(newPhoneNumber);
+        contact.setEmail(newEmail);
+    }
+}
+
 
