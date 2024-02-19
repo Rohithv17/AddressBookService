@@ -1,6 +1,7 @@
 package com.bridgelabz.addressbookservice;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddressBook {
     private Set<Contacts> contacts;
@@ -35,6 +36,22 @@ public class AddressBook {
             }
         }
     }
+    // Method to search for a person by city across multiple address books
+    public static List<Contacts> searchByCityAcrossAddressBooks(List<AddressBook> addressBooks, String city) {
+        return addressBooks.stream()
+                .flatMap(addressBook -> addressBook.contacts.stream())
+                .filter(contact -> contact.getCity().equalsIgnoreCase(city))
+                .collect(Collectors.toList());
+    }
+
+    // Method to search for a person by state across multiple address books
+    public static List<Contacts> searchByStateAcrossAddressBooks(List<AddressBook> addressBooks, String state) {
+        return addressBooks.stream()
+                .flatMap(addressBook -> addressBook.contacts.stream())
+                .filter(contact -> contact.getState().equalsIgnoreCase(state))
+                .collect(Collectors.toList());
+
+}
 
     public Contacts findContactByName(String firstName, String lastName) {
         for (Contacts contact : contacts) {

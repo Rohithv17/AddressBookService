@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.bridgelabz.addressbookservice.AddressBook.searchByCityAcrossAddressBooks;
+import static com.bridgelabz.addressbookservice.AddressBook.searchByStateAcrossAddressBooks;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -55,6 +58,41 @@ public class Main {
             }
         }
     }
+
+    // Function to search for the person by city/state
+    public static void searchPerson(List<AddressBook> addressBooks, Scanner scanner) {
+        System.out.println("Search Person:");
+        System.out.println("1. By City");
+        System.out.println("2. By State");
+        System.out.print("Enter your choice: ");
+        int searchChoice = scanner.nextInt();
+        scanner.nextLine();
+
+        if (searchChoice == 1) {
+            System.out.print("Enter city to search: ");
+            String city = scanner.nextLine();
+            List<Contacts> personsInCity = searchByCityAcrossAddressBooks(addressBooks, city);
+            displaySearchResults(personsInCity, "city", city);
+        } else if (searchChoice == 2) {
+            System.out.print("Enter state to search: ");
+            String state = scanner.nextLine();
+            List<Contacts> personsInState = searchByStateAcrossAddressBooks(addressBooks, state);
+            displaySearchResults(personsInState, "state", state);
+        } else {
+            System.out.println("Invalid choice for search.");
+        }
+    }
+
+    //To display the results
+    public static void displaySearchResults(List<Contacts> searchResults, String searchType, String searchTerm) {
+        if (searchResults.isEmpty()) {
+            System.out.println("No person found in the " + searchType + ": " + searchTerm);
+        } else {
+            System.out.println("Persons found in the " + searchType + " " + searchTerm + ":");
+            searchResults.forEach(System.out::println);
+        }
+    }
+
 
     public static void manageAddressBook(AddressBook selectedAddressBook, Scanner scanner) { // specifies operations to perform on the selected address book
 
