@@ -9,7 +9,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         AddressBook addressBook = new AddressBook();
 
-        while (true) {
+        while (true) {                                //options for user to choice
             System.out.println("Address Book Menu:");
             System.out.println("1. Add Contact");
             System.out.println("2. Edit Contact");
