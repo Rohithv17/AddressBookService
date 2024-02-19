@@ -19,27 +19,34 @@ public class Main {
             int choice = scanner.nextInt();
             scanner.nextLine();
 
-            if (choice == 1) {   // to give options for users to choose actions to be performed
-                System.out.print("Enter first name: ");
-                String firstName = scanner.nextLine();
-                System.out.print("Enter last name: ");
-                String lastName = scanner.nextLine();
-                System.out.print("Enter address: ");
-                String address = scanner.nextLine();
-                System.out.print("Enter city: ");
-                String city = scanner.nextLine();
-                System.out.print("Enter state: ");
-                String state = scanner.nextLine();
-                System.out.print("Enter ZIP: ");
-                String zip = scanner.nextLine();
-                System.out.print("Enter phone number: ");
-                String phoneNumber = scanner.nextLine();
-                System.out.print("Enter email: ");
-                String email = scanner.nextLine();
+            if (choice == 1) {
+                // Add multiple contacts until user chooses to stop
+                while (true) {
+                    System.out.print("Enter first name (or 'q' to quit): ");
+                    String firstName = scanner.nextLine();
+                    if (firstName.equalsIgnoreCase("q")) {
+                        break;
+                    }
 
-                Contacts newContact = new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email);
-                addressBook.addContact(newContact);
-                System.out.println("Contact added successfully!\n");
+                    System.out.print("Enter last name: ");
+                    String lastName = scanner.nextLine();
+                    System.out.print("Enter address: ");
+                    String address = scanner.nextLine();
+                    System.out.print("Enter city: ");
+                    String city = scanner.nextLine();
+                    System.out.print("Enter state: ");
+                    String state = scanner.nextLine();
+                    System.out.print("Enter ZIP: ");
+                    String zip = scanner.nextLine();
+                    System.out.print("Enter phone number: ");
+                    String phoneNumber = scanner.nextLine();
+                    System.out.print("Enter email: ");
+                    String email = scanner.nextLine();
+
+                    Contacts newContact = new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email);
+                    addressBook.addContact(newContact);
+                    System.out.println("Contact added successfully!\n");
+                }
             } else if (choice == 2) {
                 System.out.print("Enter first name of the contact to edit: ");
                 String editFirstName = scanner.nextLine();
@@ -70,7 +77,6 @@ public class Main {
                 } else {
                     System.out.println("Contact not found.\n");
                 }
-
             } else if (choice == 3) {
                 addressBook.displayContacts();
             } else if (choice == 4) {
