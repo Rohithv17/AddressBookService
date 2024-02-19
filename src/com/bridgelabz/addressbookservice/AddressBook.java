@@ -1,20 +1,30 @@
 package com.bridgelabz.addressbookservice;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class AddressBook {
+    private Set<Contacts> contacts;
 
-    private List<Contacts> contacts;
+
 
     public AddressBook() {
-        contacts = new ArrayList<>();
+        contacts = new HashSet<>();
+
     }
 
     public void addContact(Contacts contact) {
         contacts.add(contact);
+        if (hasDuplicate(contact.getFirstName(), contact.getLastName())) {
+            return; // Prevent duplicate addition
+        }
+        contacts.add(contact);
+        System.out.println("Contact added successfully!\n");
     }
+
+    public boolean hasDuplicate(String firstName, String lastName) {   // to check for duplicates
+        return contacts.stream().anyMatch(c -> c.getFirstName().equals(firstName) && c.getLastName().equals(lastName));
+    }
+
 
     public void displayContacts() {
         if (contacts.isEmpty()) {
