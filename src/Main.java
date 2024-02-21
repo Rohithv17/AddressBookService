@@ -3,6 +3,7 @@ import com.bridgelabz.addressbookservice.Contacts;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import static com.bridgelabz.addressbookservice.AddressBook.searchByCityAcrossAddressBooks;
@@ -71,11 +72,15 @@ public class Main {
         if (searchChoice == 1) {
             System.out.print("Enter city to search: ");
             String city = scanner.nextLine();
+            Map<String, Long> countByCity = AddressBook.searchCountByCityAcrossAddressBooks(addressBooks);
+            System.out.println("Number of persons in " + city + ": " + countByCity.getOrDefault(city, 0L));
             List<Contacts> personsInCity = searchByCityAcrossAddressBooks(addressBooks, city);
             displaySearchResults(personsInCity, "city", city);
         } else if (searchChoice == 2) {
             System.out.print("Enter state to search: ");
             String state = scanner.nextLine();
+            Map<String, Long> countByState = AddressBook.searchCountByStateAcrossAddressBooks(addressBooks);
+            System.out.println("Number of persons in " + state + ": " + countByState.getOrDefault(state, 0L));
             List<Contacts> personsInState = searchByStateAcrossAddressBooks(addressBooks, state);
             displaySearchResults(personsInState, "state", state);
         } else {

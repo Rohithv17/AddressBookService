@@ -5,11 +5,15 @@ import java.util.stream.Collectors;
 
 public class AddressBook {
     private Set<Contacts> contacts;
+    private Map<String, List<Contacts>> cityToPersons;
+    private Map<String, List<Contacts>> stateToPersons;
 
 
 
     public AddressBook() {
         contacts = new HashSet<>();
+        cityToPersons = new HashMap<>();
+        stateToPersons = new HashMap<>();
 
     }
 
@@ -84,6 +88,22 @@ public class AddressBook {
                 return;
             }
 
-}}}
+}}
+    // Method to search for a person by city across multiple address books and return count by city
+    public static Map<String, Long> searchCountByCityAcrossAddressBooks(List<AddressBook> addressBooks) {
+        return addressBooks.stream()
+                .flatMap(addressBook -> addressBook.contacts.stream())
+                .collect(Collectors.groupingBy(Contacts::getCity, Collectors.counting()));
+    }
+
+    // Method to search for a person by state across multiple address books and return count by state
+    public static Map<String, Long> searchCountByStateAcrossAddressBooks(List<AddressBook> addressBooks) {  // to count
+        return addressBooks.stream()
+                .flatMap(addressBook -> addressBook.contacts.stream())
+                .collect(Collectors.groupingBy(Contacts::getState, Collectors.counting()));
+    }
+
+
+}
 
 
